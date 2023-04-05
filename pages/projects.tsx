@@ -39,11 +39,29 @@ export default function Projects() {
         totalCount: 0
     });
 
+    const columns = [
+        {
+            title: "Project ID",
+            dataIndex: "projectId",
+            key: "projectId"
+        },
+        // {
+        //     title: "Title",
+        //     dataIndex: "title",
+        //     key: "title"
+        // },
+        {
+            title: "Last Updated",
+            dataIndex: "lastUpdated",
+            key: "lastUpdated"
+        }
+    ]
+
     const fetchProjects = async () => {
         await fetch(getEndpoint())
             .then(async (response) => await response.json())
             .then((data: ApiResponse) => {
-                console.log('data', data)
+                // console.log('data', data)
                 setProjectsData(data);
                 // data.projects?.forEach(
                 //     async (project) => {
@@ -73,20 +91,30 @@ export default function Projects() {
         <div>
             <p>Projects</p>
             <p> Total Projects: {projectsData.totalCount} </p>
-            <ul>
+            {/* <ul>
                 {isLoading ? <li> Loading... </li> : projectsData.projects?.map(project => (
                     <li key={project.projectId}>
                         <p> Project ID: {project.projectId}</p>
                         <p> Last Updated: {project.lastUpdated}</p>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
             <Table
-                // columns={columns}
+                loading={isLoading}
+                showHeader
+                columns={columns}
                 dataSource={projectsData.projects}
+                pagination={{
+                    defaultCurrent: 1,
+                    // current
+                    total: projectsData.totalCount,
+                    pageSize: 50,
+                    showQuickJumper: true,
+                    showTotal: (total: number) => `{total} items`
+                }}
                 bordered
-                size="middle"
-                scroll={{ x: 'calc(700px + 50%)', y: 240 }}
+                size="small"
+                scroll={{y: 240 }}
             />
         </div>
     )
