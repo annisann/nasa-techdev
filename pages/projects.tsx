@@ -1,6 +1,7 @@
 import { getEndpoint } from "@/lib/helper";
 import { Table } from "antd";
 import { useEffect, useState } from "react"
+import styles from "@/styles/projects.module.css"
 
 interface Project {
     projectId: number;
@@ -88,18 +89,11 @@ export default function Projects() {
     console.log(projectsData)
 
     return (
-        <div>
-            <p>Projects</p>
+        <div className={styles.container}>
+            <h1 className={styles.title}>Projects</h1>
             <p> Total Projects: {projectsData.totalCount} </p>
-            {/* <ul>
-                {isLoading ? <li> Loading... </li> : projectsData.projects?.map(project => (
-                    <li key={project.projectId}>
-                        <p> Project ID: {project.projectId}</p>
-                        <p> Last Updated: {project.lastUpdated}</p>
-                    </li>
-                ))}
-            </ul> */}
             <Table
+                className={styles.table}
                 loading={isLoading}
                 showHeader
                 columns={columns}
@@ -110,11 +104,11 @@ export default function Projects() {
                     total: projectsData.totalCount,
                     pageSize: 50,
                     showQuickJumper: true,
-                    showTotal: (total: number) => `{total} items`
+                    showTotal: (total: number) => `${total} items`
                 }}
                 bordered
                 size="small"
-                scroll={{y: 240 }}
+                scroll={{y: 300 }}
             />
         </div>
     )
