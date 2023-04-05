@@ -10,9 +10,17 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
 
 	return (
-		<main>
-			<Hero />
-			<Showcase />
-		</main>
+		<>
+			<Head>
+				<title> NASA TechDev </title>
+				<meta name="description" content="Made with NASA TechPort API" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<main>
+				<Hero />
+				<Showcase />
+			</main>
+		</>
 	)
 }
