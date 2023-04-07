@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     swcMinify: true
+  },
+  env: {
+    API_KEY: process.env.API_KEY
   }
 }
 
